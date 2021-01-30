@@ -1,0 +1,4 @@
+1. First, get the name of the class.
+2. Next, learn the number of instance varibles
+3. for instance varible:
+   i. ask how many
