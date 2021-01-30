@@ -1,0 +1,13 @@
+------------------------------------------------------------------------------------------Use Build Class:
+------------------------------------------------------------------------------------------1. First, get the name of the class.
+2. Next, learn the number of instance variables (IV)
+3. for each instance variable:
+   i. ask name and data type
+   ii. add to list is instance variables
+4. send that to class builder! 
+------------------------------------------------------------------------------------------build Class
+------------------------------------------------------------------------------------------
+1. write class header and JDoc comment
+2. for each IV: add `private [DATA_TYPE] [IV_NAME];`
+3. add `public [CLASS_NAME](for each IV: [DATA_TYPE] new[IV_NAME],) { for each IV: [IV_NAME] = new[IV_NAME];} This is the constructor.
+4. for each IV: add `public [DATA_TYPE] get[IV_NAME]() { return [IV_NAME]; }`. These are the accessor methods. 
