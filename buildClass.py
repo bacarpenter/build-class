@@ -50,7 +50,8 @@ def main():
         exit(1)
 
     buildClass(className, instanceVariables)
-    print(f"[bold]Built {className}: ./outputs/{className}.java")
+    print(
+        f"[bold]Built {className}: {OUTPUT_DIR}/outputs/{className}.java[/bold]")
 
 
 def buildClass(className, instanceVarList):
