@@ -1,7 +1,23 @@
 from rich import print
 
-# Change me!
-OUTPUT_DIR = "./outputs"
+# Change me to where you want your outputs to go.
+OUTPUT_DIR = "/Users/bencarpenter/Scripts/build-class/outputs"
+
+# List of dataType shortcuts. Feel free to change!
+dataTypeShortcuts = [
+    {
+        "key": "i", "type": "int"
+    },
+    {
+        "key": "s", "type": "String"
+    },
+    {
+        "key": "d", "type": "double"
+    },
+    {
+        "key": "b", "type": "boolean"
+    }
+]
 
 
 def main():
@@ -22,6 +38,10 @@ def main():
                 f"Instance Variable #{i} (name:data_type): ").split(":")
             instanceName = instanceIn[0]
             instanceType = instanceIn[1]
+            for dt in dataTypeShortcuts:
+                if instanceType == dt['key']:
+                    instanceType = dt['type']
+
             instanceVariables.append(
                 {'name': instanceName, 'type': instanceType})
             i += 1
@@ -52,7 +72,7 @@ def buildClass(className, instanceVarList):
         # Constructors:
         constructorTemplate = f"\t{className}("
         for iv in instanceVarList[:-1]:
-            constructorTemplate += f"{iv['type']} new{iv['name'].capitalize()},"
+            constructorTemplate += f"{iv['type']} new{iv['name'].capitalize()}, "
 
         iv2 = instanceVarList[-1]  # Last element
         constructorTemplate += f"{iv2['type']} new{iv2['name'].capitalize()}"
