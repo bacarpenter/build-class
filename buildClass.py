@@ -49,12 +49,14 @@ def main():
         print("\nGood Bye! 👋")
         exit(1)
 
-    buildClass(className, instanceVariables)
+    # ☺️ I like this line.
+    includeSetters = not (input("Include setter methods (Y/n)? ") == "n")
+    buildClass(className, instanceVariables, includeSetters)
     print(
-        f"[bold]Built {className}: {OUTPUT_DIR}/outputs/{className}.java[/bold]")
+        f"[bold]Built {className}:[/bold] {OUTPUT_DIR}/outputs/{className}.java")
 
 
-def buildClass(className, instanceVarList):
+def buildClass(className, instanceVarList, includeSetters):
     jDocComment = f"/**\n * {className} class built with the build-class python script\n * https://github.com/bacarpenter/build-class\n */\n"
     classHeader = f"\npublic class {className} {{\n"
 
@@ -94,6 +96,15 @@ def buildClass(className, instanceVarList):
 
         accessorMethods += "\n"
         classFile.write(accessorMethods)
+
+        if includeSetters:
+            # Setter Methods
+            classFile.write("\n\t// Setter Methods\n")
+            setterMethods = ""
+            for iv in instanceVarList:
+                setterMethods += f"\tpublic void set{iv['name'].capitalize()}({iv['type']} new{iv['name'].capitalize()})\n\t{{\n\t\t{iv['name']} = new{iv['name'].capitalize()};\n\t}}\n"
+
+            classFile.write(setterMethods)
 
         # End class
         classFile.write("}")
