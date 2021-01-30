@@ -2,13 +2,9 @@
 
 A Python script to take the repetitive work out of building Java classes.
 
-## Status
-
-Working! 😎 ✅
-
 ## Usage
 
-Make sure you have the rich package installed (`pip3 install -r requirements.txt`) then, run the builder wizard via `python3 buildClass.py` and follow the prompts.
+Make sure you have the rich package installed (`pip3 install -r requirements.txt`) then, run the builder wizard via `python3 buildClass.py` and follow the prompts. Alternatively, view it on online [here](https://repl.it/@bacarpenter/build-class)
 
 ## License
 
