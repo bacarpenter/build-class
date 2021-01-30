@@ -1,7 +1,7 @@
 from rich import print
 
 # Change me!
-OUTPUT_DIR = "/Users/bencarpenter/Code/build-class/outputs"
+OUTPUT_DIR = "./outputs"
 
 
 def main():
@@ -30,10 +30,11 @@ def main():
         exit(1)
 
     buildClass(className, instanceVariables)
+    print(f"[bold]Built {className}: ./outputs/{className}.java")
 
 
 def buildClass(className, instanceVarList):
-    jDocComment = f"/**\n * {className} class built with the build-class python script\n * https://github.com/bacarpenter/build-class\n */"
+    jDocComment = f"/**\n * {className} class built with the build-class python script\n * https://github.com/bacarpenter/build-class\n */\n"
     classHeader = f"\npublic class {className} {{\n"
 
     with open(f"{OUTPUT_DIR}/{className}.java", "w+") as classFile:
@@ -62,6 +63,16 @@ def buildClass(className, instanceVarList):
 
         constructorTemplate += "\t}\n"
         classFile.write(constructorTemplate)
+
+        # Accessor Methods
+
+        classFile.write("\n\t// Accessor Methods\n")
+        accessorMethods = ""
+        for iv in instanceVarList:
+            accessorMethods += f"\tpublic {iv['type']} get{iv['name'].capitalize()}()\n\t{{\n\t\treturn {iv['name']};\n\t}}\n"
+
+        accessorMethods += "\n"
+        classFile.write(accessorMethods)
 
         # End class
         classFile.write("}")
